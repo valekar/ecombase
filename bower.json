@@ -1,0 +1,15 @@
+{
+  "name": "ecombase",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+
+  "dependencies":{
+    "angular":"latest",
+    "bootstrap":"latest",
+    "angular-route":"latest"
+  }
+}
