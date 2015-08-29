@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         price:DataTypes.INTEGER,
         veg_flag:DataTypes.BOOLEAN,
         name:DataTypes.STRING,
+		//url:DataTypes.STRING,
         created_at: {
             type: DataTypes.DATE,
             defaultValue: sequelize.fn('NOW')

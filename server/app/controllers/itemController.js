@@ -11,12 +11,21 @@ router.get('/categories/:category/items', function (req, res, next) {
         res.json(items);
     }).
     error(function(err){
-        res.json({error:err.name});
+         res.json({status:"error",message:err.name});
+    });
+});
+
+router.get('/items', function (req, res, next) {
+    db.Item.findAll().then(function (items) {
+        res.json({"items":items});
+    }).
+    error(function(err){
+         res.json({status:"error",message:err.name});
     });
 });
 
 router.get('/items/:item',function(req,res,next){
-    db.Item.find({id:req.params.item}).then(function(item){
+    db.Item.find({where:{id:req.params.item}}).then(function(item){
         if(item){
             res.json(item);
         } else{
@@ -24,7 +33,7 @@ router.get('/items/:item',function(req,res,next){
         }
     }).
     error(function(err){
-        res.json({error:err.name});
+        res.json({status:"error",message:err.name});
     });
 });
 
@@ -45,14 +54,14 @@ router.put('/items/:item',function(req,res,next){
             }).
     then(function(data){
         if(data[0] == 1){
-            res.json({message:"successfully updated"});
+            res.json({status:"success",message:"Successfully updated the item",result:data});
         }
         else{
-            res.json({error:"No such records"});
+           res.json({status:"error",message:"No such records"});
         }
     }).
     error(function(err){
-        res.json({error:err.name});
+        res.json({status:"error",message:err.name});
     });
 });
 
@@ -67,31 +76,31 @@ router.post('/items',function(req,res,next){
     ).
     then(function(data){
         if(data){
-            res.json(data);
+            res.json({status:"success",message:"Successfully updated the item",result:data});
         } else {
-            res.json({error:"No such records"});
+            res.json({status:"error",message:"No such records"});
         }
 
     }).
     error(function(err){
-            res.json({error:err.name});
+            res.json({status:"error",message:err.name});
     });
 });
 
 router.delete('/items/:item',function(req,res,next){
-    db.Item.find({id:req.params.item}).then(function(data){
+    db.Item.find({where:{id:req.params.item}}).then(function(data){
         if(data) {
             data.destroy().then(function(){
-                res.json({message:"Deleted successfully"});
+                res.json({status:"success",message:"Successfully deleted the Item",result:""});
             });
         }
         else{
-            res.json({error:"No such records"});
+             res.json({status:"error",message:"No such records"});
         }
 
     }).
     error(function(err){
-        res.json({error:err.name});
+        res.json({status:"error",message:err.name});
     });
 });
 

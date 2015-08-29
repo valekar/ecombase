@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey:true,
             autoIncrement:true
         },
-        url:DataTypes.INTEGER,
+        url:DataTypes.STRING,
         caption:DataTypes.STRING,
         created_at: {
             type: DataTypes.DATE,

@@ -13,6 +13,7 @@ module.exports = function (app) {
 }
 
 
+
 // serve index and view partials
 /*
 router.get("*",function(req,res){
